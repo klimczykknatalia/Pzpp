@@ -1,0 +1,31 @@
+https://www.websequencediagrams.com/
+
+title Zarządzanie kontaktami w aplikacji PhoneNest
+
+User->Frontend: Otwiera aplikację PhoneNest
+Frontend->Backend: Żądanie pobrania listy kontaktów
+Backend->Database: SELECT * FROM Contacts
+Database-->Backend: Lista kontaktów
+Backend-->Frontend: Lista kontaktów
+Frontend-->User: Wyświetla listę kontaktów
+
+User->Frontend: Dodaje nowy kontakt (formularz)
+Frontend->Backend: POST /contacts (nowy kontakt)
+Backend->Database: INSERT INTO Contacts (...)
+Database-->Backend: Potwierdzenie zapisu
+Backend-->Frontend: Kontakt zapisany
+Frontend-->User: Nowy kontakt dodany
+
+User->Frontend: Edytuje istniejący kontakt
+Frontend->Backend: PUT /contacts/{id} (zmienione dane)
+Backend->Database: UPDATE Contacts SET ...
+Database-->Backend: Potwierdzenie aktualizacji
+Backend-->Frontend: Kontakt zaktualizowany
+Frontend-->User: Kontakt został zaktualizowany
+
+User->Frontend: Usuwa kontakt
+Frontend->Backend: DELETE /contacts/{id}
+Backend->Database: DELETE FROM Contacts WHERE id = ...
+Database-->Backend: Potwierdzenie usunięcia
+Backend-->Frontend: Kontakt usunięty
+Frontend-->User: Kontakt został usunięty
