@@ -24,7 +24,7 @@ Lista kontaktów: Wyświetlanie wszystkich kontaktów z podstawowymi informacjam
 Szczegóły kontaktu: Możliwość wyświetlenia pełnych informacji o wybranym kontakcie.
 
 
-*Wymagania niefunkcjonalne*
+**Wymagania niefunkcjonalne**
 
 
 Technologie:
@@ -59,7 +59,7 @@ Testy jednostkowe: Zaimplementowane testy jednostkowe zapewniające poprawność
 Testy integracyjne: Sprawdzenie współpracy między różnymi modułami aplikacji.
 
 
-*Potencjalne ryzyka*
+**Potencjalne ryzyka**
 
 Zarządzanie danymi:
 
