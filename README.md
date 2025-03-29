@@ -1,11 +1,11 @@
 # Pzpp
 
-*Opis projektu*
+**Opis projektu**
 
 PhoneNest to aplikacja webowa stworzona w technologii ASP.NET Core, umożliwiająca użytkownikom zarządzanie własną książką kontaktów. Użytkownicy mogą dodawać, edytować oraz usuwać kontakty, wprowadzając takie informacje jak imię, nazwisko, adres e-mail, numer telefonu. 
 
 
-*Wymagania funkcjonalne*
+**Wymagania funkcjonalne**
 
 
 Zarządzanie kontaktami:
