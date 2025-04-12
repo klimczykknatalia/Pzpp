@@ -1,12 +1,40 @@
+# === Build results ===
 bin/
 obj/
+
+# === User-specific files ===
 *.user
 *.suo
-*.cache
-*.log
+*.userosscache
+*.sln.docstates
+
+# === OS generated files ===
+.DS_Store
+Thumbs.db
+
+# === JetBrains Rider ===
 .idea/
-*.dll
-*.exe
-*.pdb
+*.sln.iml
+
+# === Visual Studio Code (jeśli ktoś użyje VSCode) ===
 .vscode/
 
+# === ASP.NET Core secrets & certs ===
+**/appsettings.Development.json
+**/secrets.json
+*.pfx
+*.p12
+
+# === Entity Framework Core ===
+Migrations/
+
+# === SQLite database ===
+*.db
+*.sqlite
+
+# === Logs ===
+*.log
+
+# === Publish output ===
+publish/
+wwwroot/lib/
