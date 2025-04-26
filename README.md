@@ -71,6 +71,7 @@ Wydajność:
 
 Obciążenie serwera: Przy dużej liczbie użytkowników aplikacja może wymagać optymalizacji pod kątem wydajności.
 
+
 Kompatybilność:
 
 Różne przeglądarki: Aplikacja powinna być testowana pod kątem kompatybilności z różnymi przeglądarkami internetowymi.
