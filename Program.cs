@@ -5,21 +5,19 @@ using Pzpp.Data.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Konfiguracja połączenia z bazą danych
+// Konfiguracja SQLite
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Dodaj Identity
+// Identity
 builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
-// Dodaj kontrolery i Razor Pages
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
-// Middleware
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -28,14 +26,10 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
-// Dodaj uwierzytelnianie i autoryzację
 app.UseAuthentication();
 app.UseAuthorization();
 
-// Routing
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

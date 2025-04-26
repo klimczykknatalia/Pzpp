@@ -11,6 +11,6 @@ namespace Pzpp.Data
         {
         }
 
-        public DbSet<Contact> Contacts { get; set; } // jeśli masz model Contact
+        public DbSet<Contact> Contacts { get; set; }
     }
 }
