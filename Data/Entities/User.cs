@@ -4,6 +4,6 @@ namespace Pzpp.Data.Entities
 {
     public class User : IdentityUser
     {
-        // Możesz dodać dodatkowe pola w przyszłości
+        // Możesz tutaj dodać dodatkowe pola użytkownika
     }
 }
