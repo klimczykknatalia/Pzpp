@@ -1,35 +1,76 @@
 @model IEnumerable<Pzpp.Data.Entities.Contact>
-
 @{
     ViewData["Title"] = "Moje kontakty";
 }
 
-<h1>@ViewData["Title"]</h1>
-<p><a class="btn btn-primary" asp-action="Create">Dodaj nowy kontakt</a></p>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Imię</th>
-            <th>Nazwisko</th>
-            <th>Email</th>
-            <th>Telefon</th>
-            <th></th>
-        </tr>
+<div class="row mb-3">
+  <div class="col-md-6">
+    <input
+      id="searchInput"
+      type="text"
+      class="form-control"
+      placeholder="Szukaj kontaktów..."
+    />
+  </div>
+  <div class="col-md-6 text-end">
+    <a 
+      class="btn btn-primary" 
+      asp-controller="Contact" 
+      asp-action="Create">
+      <i class="bi bi-plus-lg"></i> Dodaj kontakt
+    </a>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped" id="contactsTable">
+    <thead class="table-light">
+      <tr>
+        <th>Imię</th>
+        <th>Nazwisko</th>
+        <th>Email</th>
+        <th>Telefon</th>
+        <th class="text-end">Akcje</th>
+      </tr>
     </thead>
     <tbody>
-    @foreach (var contact in Model)
+    @foreach (var c in Model)
     {
-        <tr>
-            <td>@contact.FirstName</td>
-            <td>@contact.LastName</td>
-            <td>@contact.Email</td>
-            <td>@contact.PhoneNumber</td>
-            <td>
-                <a asp-action="Details" asp-route-id="@contact.Id">Szczegóły</a> |
-                <a asp-action="Edit" asp-route-id="@contact.Id">Edytuj</a> |
-                <a asp-action="Delete" asp-route-id="@contact.Id">Usuń</a>
-            </td>
-        </tr>
+      <tr>
+        <td>@c.FirstName</td>
+        <td>@c.LastName</td>
+        <td>@c.Email</td>
+        <td>@c.PhoneNumber</td>
+        <td class="text-end">
+          <a class="btn btn-sm btn-outline-info" 
+             asp-controller="Contact" 
+             asp-action="Details" 
+             asp-route-id="@c.Id">🔍</a>
+          <a class="btn btn-sm btn-outline-warning" 
+             asp-controller="Contact" 
+             asp-action="Edit"    
+             asp-route-id="@c.Id">✏️</a>
+          <a class="btn btn-sm btn-outline-danger"  
+             asp-controller="Contact" 
+             asp-action="Delete"  
+             asp-route-id="@c.Id">🗑️</a>
+        </td>
+      </tr>
     }
     </tbody>
-</table>
+  </table>
+</div>
+
+@section Scripts {
+<script>
+  // Prosta filtracja w tabeli po wpisanym tekście
+  $(function() {
+    $("#searchInput").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#contactsTable tbody tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+      });
+    });
+  });
+</script>
+}
