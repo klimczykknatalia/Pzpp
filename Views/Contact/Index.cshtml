@@ -1,0 +1,35 @@
+@model IEnumerable<Pzpp.Data.Entities.Contact>
+
+@{
+    ViewData["Title"] = "Moje kontakty";
+}
+
+<h1>@ViewData["Title"]</h1>
+<p><a class="btn btn-primary" asp-action="Create">Dodaj nowy kontakt</a></p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <th>Email</th>
+            <th>Telefon</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var contact in Model)
+    {
+        <tr>
+            <td>@contact.FirstName</td>
+            <td>@contact.LastName</td>
+            <td>@contact.Email</td>
+            <td>@contact.PhoneNumber</td>
+            <td>
+                <a asp-action="Details" asp-route-id="@contact.Id">Szczegóły</a> |
+                <a asp-action="Edit" asp-route-id="@contact.Id">Edytuj</a> |
+                <a asp-action="Delete" asp-route-id="@contact.Id">Usuń</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

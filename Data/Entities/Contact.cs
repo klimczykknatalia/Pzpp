@@ -7,5 +7,9 @@ namespace Pzpp.Data.Entities
         public string LastName { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
+
+        // new
+        public string UserId { get; set; }
+        public User User { get; set; }
     }
 }

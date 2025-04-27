@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    …
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">PhoneNest</a>
+                <div class="collapse navbar-collapse">
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    <footer>
+        @RenderSection("Scripts", required: false)
+    </footer>
+</body>
+</html>
