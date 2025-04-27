@@ -8,6 +8,8 @@
   <div class="card-body">
     <h5 class="card-title">@ViewData["Title"]</h5>
     <form asp-action="Create" method="post">
+      <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
       <div class="row mb-3">
         <div class="col-md-6">
           <label asp-for="FirstName" class="form-label"></label>
@@ -20,16 +22,26 @@
           <span asp-validation-for="LastName" class="text-danger"></span>
         </div>
       </div>
+
       <div class="mb-3">
         <label asp-for="Email" class="form-label"></label>
         <input asp-for="Email" class="form-control" />
         <span asp-validation-for="Email" class="text-danger"></span>
       </div>
+
       <div class="mb-3">
         <label asp-for="PhoneNumber" class="form-label"></label>
         <input asp-for="PhoneNumber" class="form-control" />
         <span asp-validation-for="PhoneNumber" class="text-danger"></span>
       </div>
+
+      <!-- tutaj nowe pole Ulubiony Tymbark -->
+      <div class="mb-3">
+        <label asp-for="FavoriteTymbark" class="form-label"></label>
+        <input asp-for="FavoriteTymbark" class="form-control" />
+        <span asp-validation-for="FavoriteTymbark" class="text-danger"></span>
+      </div>
+
       <div class="text-end">
         <button type="submit" class="btn btn-success">Zapisz</button>
         <a asp-action="Index" class="btn btn-secondary">Anuluj</a>
