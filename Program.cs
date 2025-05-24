@@ -10,9 +10,9 @@ using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 1) DbContext SQLite
+// 1) DbContext PostgreSQL (zmiana SQLite na Npgsql)
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // 2) Identity
 builder.Services.AddDefaultIdentity<User>(opts => opts.SignIn.RequireConfirmedAccount = false)
@@ -33,7 +33,7 @@ builder.Services.AddSwaggerGen(c =>
     {
         Title = "PhoneNest API",
         Version = "v1",
-        Description = "REST API dla zarz¹dzania kontaktami"
+        Description = "REST API dla zarz±dzania kontaktami"
     });
 });
 
@@ -54,7 +54,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-// Swagger UI (dostêpne pod /swagger)
+// Swagger UI
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
@@ -70,7 +70,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Contact}/{action=Index}/{id?}");
 
-// Mapowanie Razor Pages (potrzebne dla Identity UI)
+// Razor Pages (Identity)
 app.MapRazorPages();
 
 app.Run();
