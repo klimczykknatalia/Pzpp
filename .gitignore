@@ -37,4 +37,5 @@ Migrations/
 
 # === Publish output ===
 publish/
-wwwroot/lib/
+wwwroot/lib/.vs/
+.vs/
