@@ -1,56 +1,60 @@
 @model Pzpp.Data.Entities.Contact
-
 @{
-    ViewData["Title"] = "Edytuj kontakt";
+ViewData["Title"] = "Edytuj kontakt";
 }
 
-<div class="card mx-auto" style="max-width: 600px;">
+<div class="card shadow-sm mx-auto" style="max-width: 600px;">
+  <div class="card-header bg-warning text-dark">
+    <h5 class="mb-0"><i class="bi bi-pencil-square me-2"></i> @ViewData["Title"]</h5>
+  </div>
+
   <div class="card-body">
-    <h5 class="card-title">@ViewData["Title"]</h5>
-    <form asp-action="Edit" method="post">
-      <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <form asp-action="Edit" method="post" novalidate>
       <input type="hidden" asp-for="Id" />
+      <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-      <div class="row mb-3">
-        <div class="col-md-6">
-          <label asp-for="FirstName" class="form-label"></label>
-          <input asp-for="FirstName" class="form-control" />
-          <span asp-validation-for="FirstName" class="text-danger"></span>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <div class="form-floating">
+            <input asp-for="FirstName" class="form-control" placeholder="Imię" />
+            <label asp-for="FirstName"></label>
+          </div>
+          <span asp-validation-for="FirstName" class="text-danger small"></span>
         </div>
-        <div class="col-md-6">
-          <label asp-for="LastName" class="form-label"></label>
-          <input asp-for="LastName" class="form-control" />
-          <span asp-validation-for="LastName" class="text-danger"></span>
+
+        <div class="col-md-6 mb-3">
+          <div class="form-floating">
+            <input asp-for="LastName" class="form-control" placeholder="Nazwisko" />
+            <label asp-for="LastName"></label>
+          </div>
+          <span asp-validation-for="LastName" class="text-danger small"></span>
         </div>
       </div>
 
-      <div class="mb-3">
-        <label asp-for="Email" class="form-label"></label>
-        <input asp-for="Email" class="form-control" />
-        <span asp-validation-for="Email" class="text-danger"></span>
+      <div class="form-floating mb-3">
+        <input asp-for="Email" class="form-control" placeholder="Email" />
+        <label asp-for="Email"></label>
+        <span asp-validation-for="Email" class="text-danger small"></span>
       </div>
 
-      <div class="mb-3">
-        <label asp-for="PhoneNumber" class="form-label"></label>
-        <input asp-for="PhoneNumber" class="form-control" />
-        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+      <div class="form-floating mb-3">
+        <input asp-for="PhoneNumber" class="form-control" placeholder="Telefon" />
+        <label asp-for="PhoneNumber"></label>
+        <span asp-validation-for="PhoneNumber" class="text-danger small"></span>
       </div>
 
-      <!-- i tutaj to samo pole -->
-      <div class="mb-3">
-        <label asp-for="FavoriteTymbark" class="form-label"></label>
-        <input asp-for="FavoriteTymbark" class="form-control" />
-        <span asp-validation-for="FavoriteTymbark" class="text-danger"></span>
+      <div class="form-floating mb-4">
+        <input asp-for="FavoriteTymbark" class="form-control" placeholder="Ulubiony Tymbark" />
+        <label asp-for="FavoriteTymbark"></label>
+        <span asp-validation-for="FavoriteTymbark" class="text-danger small"></span>
       </div>
 
       <div class="text-end">
-        <button type="submit" class="btn btn-primary">Zapisz zmiany</button>
+        <button type="submit" class="btn btn-primary">
+          <i class="bi bi-save me-1"></i> Zapisz zmiany
+        </button>
         <a asp-action="Index" class="btn btn-secondary">Anuluj</a>
       </div>
     </form>
   </div>
 </div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

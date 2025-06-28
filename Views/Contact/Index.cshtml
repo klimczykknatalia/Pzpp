@@ -1,78 +1,65 @@
-@model IEnumerable<Pzpp.Data.Entities.Contact>
-@{
-    ViewData["Title"] = "Moje kontakty";
-}
+  @model IEnumerable<Pzpp.Data.Entities.Contact>
+  @{
+  ViewData["Title"] = "Moje kontakty";
+  var query = Context.Request.Query["q"].ToString();
+  }
 
-<div class="row mb-3">
-  <div class="col-md-6">
-    <input
-      id="searchInput"
-      type="text"
-      class="form-control"
-      placeholder="Szukaj kontaktów..."
-    />
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+      <h5 class="mb-0"><i class="bi bi-people-fill me-2"></i> Twoje kontakty</h5>
+
+      <a class="btn btn-light"
+         asp-action="Create">
+        <i class="bi bi-plus-lg me-1"></i> Dodaj
+      </a>
+    </div>
+
+    <div class="card-body p-0">
+      <form method="get" class="p-3 border-bottom">
+        <div class="input-group">
+          <input type="text" name="q"
+                 class="form-control"
+                 placeholder="Szukaj kontaktów…"
+                 value="@query" />
+          <button class="btn btn-outline-secondary" type="submit">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+      </form>
+
+      <div class="table-responsive">
+        <table class="table table-hover table-striped align-middle mb-0">
+          <thead class="table-light">
+          <tr>
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <th>Email</th>
+            <th>Telefon</th>
+            <th>Ulubiony&nbsp;Tymbark</th>
+            <th class="text-end">Akcje</th>
+          </tr>
+          </thead>
+          <tbody>
+          @foreach (var c in Model)
+          {
+          <tr>
+            <td>@c.FirstName</td>
+            <td>@c.LastName</td>
+            <td>@c.Email</td>
+            <td>@c.PhoneNumber</td>
+            <td>@c.FavoriteTymbark</td>
+            <td class="text-end">
+              <a class="btn btn-sm btn-outline-info"
+                 asp-action="Details" asp-route-id="@c.Id"><i class="bi bi-search"></i></a>
+              <a class="btn btn-sm btn-outline-warning"
+                 asp-action="Edit" asp-route-id="@c.Id"><i class="bi bi-pencil"></i></a>
+              <a class="btn btn-sm btn-outline-danger"
+                 asp-action="Delete" asp-route-id="@c.Id"><i class="bi bi-trash"></i></a>
+            </td>
+          </tr>
+          }
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
-  <div class="col-md-6 text-end">
-    <a 
-      class="btn btn-primary" 
-      asp-controller="Contact" 
-      asp-action="Create">
-      <i class="bi bi-plus-lg"></i> Dodaj kontakt
-    </a>
-  </div>
-</div>
-
-<div class="table-responsive">
-  <table class="table table-striped" id="contactsTable">
-    <thead class="table-light">
-      <tr>
-        <th>Imię</th>
-        <th>Nazwisko</th>
-        <th>Email</th>
-        <th>Telefon</th>
-        <th>Ulubiony Tymbark</th>      <!-- nowa kolumna -->
-        <th class="text-end">Akcje</th>
-      </tr>
-    </thead>
-    <tbody>
-    @foreach (var c in Model)
-    {
-      <tr>
-        <td>@c.FirstName</td>
-        <td>@c.LastName</td>
-        <td>@c.Email</td>
-        <td>@c.PhoneNumber</td>
-        <td>@c.FavoriteTymbark</td>  <!-- wyświetlanie pola -->
-        <td class="text-end">
-          <a class="btn btn-sm btn-outline-info" 
-             asp-controller="Contact" 
-             asp-action="Details" 
-             asp-route-id="@c.Id">🔍</a>
-          <a class="btn btn-sm btn-outline-warning" 
-             asp-controller="Contact" 
-             asp-action="Edit"    
-             asp-route-id="@c.Id">✏️</a>
-          <a class="btn btn-sm btn-outline-danger"  
-             asp-controller="Contact" 
-             asp-action="Delete"  
-             asp-route-id="@c.Id">🗑️</a>
-        </td>
-      </tr>
-    }
-    </tbody>
-  </table>
-</div>
-
-@section Scripts {
-<script>
-  // Prosta filtracja w tabeli po wpisanym tekście
-  $(function() {
-    $("#searchInput").on("keyup", function() {
-      var value = $(this).val().toLowerCase();
-      $("#contactsTable tbody tr").filter(function() {
-        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-      });
-    });
-  });
-</script>
-}

@@ -1,19 +1,31 @@
 @model Pzpp.Data.Entities.Contact
-
 @{
-    ViewData["Title"] = "Usuń kontakt";
+ViewData["Title"] = "Usuń kontakt";
 }
 
-<h1>@ViewData["Title"]</h1>
-<h3>Czy na pewno chcesz usunąć ten kontakt?</h3>
-<dl class="row">
-    <dt class="col-sm-2">Imię</dt><dd class="col-sm-10">@Model.FirstName</dd>
-    <dt class="col-sm-2">Nazwisko</dt><dd class="col-sm-10">@Model.LastName</dd>
-    <dt class="col-sm-2">Email</dt><dd class="col-sm-10">@Model.Email</dd>
-    <dt class="col-sm-2">Telefon</dt><dd class="col-sm-10">@Model.PhoneNumber</dd>
-</dl>
-<form asp-action="Delete">
-    <input type="hidden" asp-for="Id" />
-    <button type="submit" class="btn btn-danger">Usuń</button>
-    <a asp-action="Index" class="btn btn-secondary">Anuluj</a>
-</form>
+<div class="card shadow-sm mx-auto" style="max-width: 600px;">
+    <div class="card-header bg-danger text-white">
+        <h5 class="mb-0"><i class="bi bi-trash3-fill me-2"></i> @ViewData["Title"]</h5>
+    </div>
+
+    <div class="card-body">
+        <p class="lead">Czy na pewno chcesz usunąć ten kontakt?</p>
+
+        <dl class="row mb-0">
+            <dt class="col-sm-4">Imię</dt><dd class="col-sm-8">@Model.FirstName</dd>
+            <dt class="col-sm-4">Nazwisko</dt><dd class="col-sm-8">@Model.LastName</dd>
+            <dt class="col-sm-4">Email</dt><dd class="col-sm-8">@Model.Email</dd>
+            <dt class="col-sm-4">Telefon</dt><dd class="col-sm-8">@Model.PhoneNumber</dd>
+        </dl>
+    </div>
+
+    <div class="card-footer text-end">
+        <form asp-action="Delete" class="d-inline">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger">
+                <i class="bi bi-trash me-1"></i> Usuń
+            </button>
+        </form>
+        <a asp-action="Index" class="btn btn-secondary">Anuluj</a>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+﻿@page
+@model RegisterModel
+@{
+ViewData["Title"] = "Rejestracja";
+}
+
+<div class="card shadow-sm mx-auto" style="max-width:480px;">
+    <div class="card-header text-center">
+        <h4 class="mb-0">Rejestracja</h4>
+    </div>
+
+    <div class="card-body">
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post" class="needs-validation" novalidate>
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="Input.Email" class="form-label"></label>
+                <input asp-for="Input.Email" class="form-control" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Input.Password" class="form-label"></label>
+                <input asp-for="Input.Password" class="form-control" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+
+            <div class="mb-4">
+                <label asp-for="Input.ConfirmPassword" class="form-label"></label>
+                <input asp-for="Input.ConfirmPassword" class="form-control" />
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-success w-100">
+                <i class="bi bi-person-plus me-1"></i> Zarejestruj
+            </button>
+        </form>
+    </div>
+</div>
